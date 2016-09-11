@@ -72,7 +72,8 @@ function firstQuestion() {
 		b.text(questionAnswer[count].answers[i]);
 		b.appendTo('#answers');
 	}
-	nextQuestion();
+
+	// nextQuestion();
 }
 
 function nextQuestion() {
@@ -83,43 +84,6 @@ function nextQuestion() {
 	}
 }
 
-function startTrivia () {
-
-}
-
-
-/* function displayAnswers() {
-
-	for (var i = 0; i < questionAnswer.length; i++) {
-		var b = $('<button>');
-		b.text(questionAnswer[i].answers);
-		// b.addClass('characterList');
-		// b.attr('id', i); 
-		// b.css('background-image', 'url(" '+ characters[i].img +'  ")');
-		 // $('#answers').after(b);
-		 $('#question').append(questionAnswer[i].question);
-		 b.appendTo('#answers');
-		 // setDelay(i);
-	}	
-}*/
-
-
-/*function setDelay(i) {
-  setTimeout(function(){
-    console.log(i);
-  }, 1000);
-}*/
-
-// function loop() {
-	// displayAnswers();
-	// setTimeout(loop,1000);
-	// loopCount ++;
-	// console.log(loopCount);
-	// need something to clear
-// }
-
-
-
 $(document).ready(function() {
 
 // $('.correct').click(startTrivia);
@@ -127,6 +91,13 @@ $(document).ready(function() {
 
 firstQuestion();
 
-// nextQuestion();
+$('button').on('click', function() {
+	console.log($(this).text());
+	if ($(this).text() == questionAnswer[count].correct) {
+		console.log('correct');
+	} else {
+		console.log('incorrect');
+	}
+});
 
 });

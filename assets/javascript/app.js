@@ -63,6 +63,15 @@ var questionAnswer = [
 
 var count = 0;
 
+var correct = 0;
+
+var incorrect = 0;
+
+function showNextQuestion () {
+	questionTimeout = setTimeout(firstQuestion, 5000);	
+}
+
+
 function firstQuestion() {
 	$('#question').empty();
 	$('#answers').empty();
@@ -73,11 +82,11 @@ function firstQuestion() {
 		b.appendTo('#answers');
 	}
 
-	// nextQuestion();
+	nextQuestion();
 }
 
 function nextQuestion() {
-	setTimeout(firstQuestion, 5000);
+	showNextQuestion();
 	count++;
 	if (count==questionAnswer.length) {
 		count = 0;
@@ -86,17 +95,16 @@ function nextQuestion() {
 
 $(document).ready(function() {
 
-// $('.correct').click(startTrivia);
-// $('.inCorrect').click(continueTrivia);
-
 firstQuestion();
 
 $('button').on('click', function() {
 	console.log($(this).text());
 	if ($(this).text() == questionAnswer[count].correct) {
 		console.log('correct');
+		correct++;
 	} else {
 		console.log('incorrect');
+		incorrect++;
 	}
 });
 

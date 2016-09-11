@@ -82,7 +82,19 @@ function firstQuestion() {
 		b.appendTo('#answers');
 	}
 
-	nextQuestion();
+	$('button').on('click', function() {
+	console.log($(this).text());
+	if ($(this).text() == questionAnswer[count].correct) {
+		console.log('correct');
+		correct++;
+		nextQuestion();
+	} else {
+		console.log('incorrect');
+		incorrect++;
+		nextQuestion();
+	}
+});
+
 }
 
 function nextQuestion() {
@@ -97,15 +109,6 @@ $(document).ready(function() {
 
 firstQuestion();
 
-$('button').on('click', function() {
-	console.log($(this).text());
-	if ($(this).text() == questionAnswer[count].correct) {
-		console.log('correct');
-		correct++;
-	} else {
-		console.log('incorrect');
-		incorrect++;
-	}
-});
+
 
 });

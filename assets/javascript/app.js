@@ -60,8 +60,16 @@ var questionAnswer = [
 		correct: '3'
 	}
 ];
+function firstQuestion() {
+	$('#question').append(questionAnswer[0].question);
+	for (var i = 0; i < questionAnswer[0].answers.length; i++) {
+		var b = $('<button>');
+		b.text(questionAnswer[0].answers[i]);
+		b.appendTo('#answers');
+	}
+}
 
-// need a set timeout function to stop the loop from running
+
 function displayAnswers() {
 
 	for (var i = 0; i < questionAnswer.length; i++) {
@@ -71,10 +79,10 @@ function displayAnswers() {
 		// b.attr('id', i); 
 		// b.css('background-image', 'url(" '+ characters[i].img +'  ")');
 		 // $('#answers').after(b);
-		 b.appendTo('#answers');
 		 $('#question').append(questionAnswer[i].question);
+		 b.appendTo('#answers');
 		 // setDelay(i);
-	}
+	}	
 }
 
 
@@ -87,6 +95,8 @@ function displayAnswers() {
 function loop() {
 	displayAnswers();
 	setTimeout(loop,1000);
+	loopCount ++;
+	console.log(loopCount);
 	// need something to clear
 }
 
@@ -94,6 +104,7 @@ function loop() {
 
 $(document).ready(function() {
 
-// loop();
+firstQuestion();
+// displayAnswers();
 
 });

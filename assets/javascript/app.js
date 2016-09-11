@@ -60,17 +60,35 @@ var questionAnswer = [
 		correct: '3'
 	}
 ];
+
+var count = 0;
+
 function firstQuestion() {
-	$('#question').append(questionAnswer[0].question);
-	for (var i = 0; i < questionAnswer[0].answers.length; i++) {
+	$('#question').empty();
+	$('#answers').empty();
+	$('#question').append(questionAnswer[count].question);
+	for (var i = 0; i < questionAnswer[count].answers.length; i++) {
 		var b = $('<button>');
-		b.text(questionAnswer[0].answers[i]);
+		b.text(questionAnswer[count].answers[i]);
 		b.appendTo('#answers');
+	}
+	nextQuestion();
+}
+
+function nextQuestion() {
+	setTimeout(firstQuestion, 5000);
+	count++;
+	if (count==questionAnswer.length) {
+		count = 0;
 	}
 }
 
+function startTrivia () {
 
-function displayAnswers() {
+}
+
+
+/* function displayAnswers() {
 
 	for (var i = 0; i < questionAnswer.length; i++) {
 		var b = $('<button>');
@@ -83,7 +101,7 @@ function displayAnswers() {
 		 b.appendTo('#answers');
 		 // setDelay(i);
 	}	
-}
+}*/
 
 
 /*function setDelay(i) {
@@ -92,19 +110,23 @@ function displayAnswers() {
   }, 1000);
 }*/
 
-function loop() {
-	displayAnswers();
-	setTimeout(loop,1000);
-	loopCount ++;
-	console.log(loopCount);
+// function loop() {
+	// displayAnswers();
+	// setTimeout(loop,1000);
+	// loopCount ++;
+	// console.log(loopCount);
 	// need something to clear
-}
+// }
 
 
 
 $(document).ready(function() {
 
+// $('.correct').click(startTrivia);
+// $('.inCorrect').click(continueTrivia);
+
 firstQuestion();
-// displayAnswers();
+
+// nextQuestion();
 
 });

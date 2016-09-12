@@ -109,6 +109,11 @@ function nextQuestion() {
 	showNextQuestion();
 	count++;
 	if (count==questionAnswer.length) {
+		// display results page here for a few moments
+		$('#question').empty();
+		$('#answer').empty();
+		$('#question').html('Correct Answers' + correct);
+		$('#answer').html('Incorrect Answers' + incorrect);
 		count = 0;
 	}
 }

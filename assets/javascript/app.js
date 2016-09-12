@@ -62,7 +62,7 @@ var questionAnswer = [
 ];
 var time = 5;
 
-var count = 0;
+var questionCount = 0;
 
 var correct = 0;
 
@@ -72,30 +72,34 @@ function showNextQuestion () {
 	questionTimeout = setTimeout(firstQuestion, 5000);	
 }
 
-function clearTimer() {
-	clearTimeout(questionTimeout);
-}
+// function clearTimer() {
+	// clearTimeout(questionTimeout);
+// }
 
 function firstQuestion() {
 	$('#question').empty();
 	$('#answers').empty();
-	$('#question').append(questionAnswer[count].question);
-	for (var i = 0; i < questionAnswer[count].answers.length; i++) {
+	$('#question').append(questionAnswer[questionCount].question);
+	for (var i = 0; i < questionAnswer[questionCount].answers.length; i++) {
 		var b = $('<button>');
-		b.text(questionAnswer[count].answers[i]);
+		b.text(questionAnswer[questionCount].answers[i]);
 		b.appendTo('#answers');
 	}
 
 	$('button').on('click', function() {
 		console.log($(this).text());
-		if ($(this).text() == questionAnswer[count].correct) {
+		if ($(this).text() == questionAnswer[questionCount].correct) {
 			correct++;
 			clearTimeout(questionTimeout);
+			clearTimeout(counter);
+			time = 5;
 			firstQuestion();
 			
-		} else {
+		} else /*if ($(this).text() != questionAnswer[questionCount].correct)*/ {
 			incorrect++;
 			clearTimeout(questionTimeout);
+			clearTimeout(counter);
+			time = 5;
 			firstQuestion();	
 		} 
 	});
@@ -105,40 +109,40 @@ function firstQuestion() {
 
 function nextQuestion() {
 	showNextQuestion();
-	count++;
-	if (count==questionAnswer.length) {
+	questionCount++;
+	incorrect++;
+	clearTimeout(counter);
+	time = 5;
+	countDown();
+	if (questionCount==questionAnswer.length) {
 		// display results page here for a few moments
 		$('#question').empty();
 		$('#answer').empty();
 		$('#question').html('Correct Answers: ' + correct);
 		$('#answers').html('Incorrect Answers: ' + incorrect);
-		count = 0;
+		questionCount = 0;
 		correct = 0;
 		incorrect = 0;
 	}
 }
 
-function countDown() {
-	time--;
-	var converted = timeConverter(time);
-	$('#timer').html(converted);
+function startCountDown() {
+	counter = setTimeout(countDown, 1000);
 }
 
-function timeConverter(t){
-	var minutes = Math.floor(t/60);
-	var seconds = t - (minutes * 60);
-	 	if (seconds < 10){
-	    	seconds = "0" + seconds;
-	  	}
-	  	if (minutes === 0){
-	    	minutes = "00";
-	  } else if (minutes < 10){
-	   		 minutes = "0" + minutes;
-	  }
-	  	return minutes + ":" + seconds;
+function countDown() {
+	startCountDown();
+	time --;
+	$('#timer').html(time);
 }
+
+window.onload = function() {
+
+};
 
 $(document).ready(function() {
+
+	countDown();
 
 	firstQuestion();
 

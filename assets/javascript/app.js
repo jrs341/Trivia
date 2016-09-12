@@ -72,10 +72,6 @@ function showNextQuestion () {
 	questionTimeout = setTimeout(firstQuestion, 5000);	
 }
 
-// function clearTimer() {
-	// clearTimeout(questionTimeout);
-// }
-
 function firstQuestion() {
 	empty();
 	$('#question').append(questionAnswer[questionCount].question);
@@ -142,14 +138,10 @@ function clickReset() {
 	firstQuestion();	
 }
 
-window.onload = function() {
-
-};
-
 $(document).ready(function() {
 
-	countDown();
+	// countDown();
 
-	firstQuestion();
+	// firstQuestion();
 
 });

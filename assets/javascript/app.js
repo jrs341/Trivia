@@ -60,7 +60,7 @@ var questionAnswer = [
 		correct: '3'
 	}
 ];
-var click = true;
+// var click = true;
 
 var count = 0;
 
@@ -70,6 +70,10 @@ var incorrect = 0;
 
 function showNextQuestion () {
 	questionTimeout = setTimeout(firstQuestion, 5000);	
+}
+
+function clearTimer() {
+	clearTimeout(questionTimeout);
 }
 
 function firstQuestion() {
@@ -87,19 +91,18 @@ function firstQuestion() {
 		if ($(this).text() == questionAnswer[count].correct) {
 			console.log('correct');
 			correct++;
-			nextQuestion();
-			return click = false;
+			clearTimeout(questionTimeout);
+			firstQuestion();
+			
 		} else {
 			console.log('incorrect');
 			incorrect++;
-			nextQuestion();
-			return click = false;
+			clearTimeout(questionTimeout);
+			firstQuestion();	
 		} 
 	});
 
-	if (click) {
-		nextQuestion();
-	}
+	nextQuestion();
 }
 
 function nextQuestion() {

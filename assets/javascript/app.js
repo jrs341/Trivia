@@ -60,6 +60,7 @@ var questionAnswer = [
 		correct: '3'
 	}
 ];
+var click = true;
 
 var count = 0;
 
@@ -70,7 +71,6 @@ var incorrect = 0;
 function showNextQuestion () {
 	questionTimeout = setTimeout(firstQuestion, 5000);	
 }
-
 
 function firstQuestion() {
 	$('#question').empty();
@@ -83,18 +83,23 @@ function firstQuestion() {
 	}
 
 	$('button').on('click', function() {
-	console.log($(this).text());
-	if ($(this).text() == questionAnswer[count].correct) {
-		console.log('correct');
-		correct++;
-		nextQuestion();
-	} else {
-		console.log('incorrect');
-		incorrect++;
+		console.log($(this).text());
+		if ($(this).text() == questionAnswer[count].correct) {
+			console.log('correct');
+			correct++;
+			nextQuestion();
+			return click = false;
+		} else {
+			console.log('incorrect');
+			incorrect++;
+			nextQuestion();
+			return click = false;
+		} 
+	});
+
+	if (click) {
 		nextQuestion();
 	}
-});
-
 }
 
 function nextQuestion() {
@@ -107,8 +112,6 @@ function nextQuestion() {
 
 $(document).ready(function() {
 
-firstQuestion();
-
-
+	// firstQuestion();
 
 });

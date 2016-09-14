@@ -95,7 +95,7 @@ function firstQuestion() {
 			// if ($(this).text() != questionAnswer[questionCount].correct)	
 		} else {
 			incorrect++;
-			$('#result').html('That answer was incorrect the correct answer is ' + questionAnswer[questionCount].correct);
+			$('#result').html('That answer was incorrect the correct answer is ' + questionAnswer[questionCount -1].correct);
 			clickReset();
 			resultTimeout();
 		}

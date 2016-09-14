@@ -68,6 +68,8 @@ var correct = 0;
 
 var incorrect = 0;
 
+var click = 0;
+
 function showNextQuestion() {
 	questionTimeout = setTimeout(firstQuestion, 5000);	
 }
@@ -86,23 +88,31 @@ function firstQuestion() {
 	}
 
 	$('button').on('click', function() {
-		console.log($(this).text());
 		if ($(this).text() == questionAnswer[questionCount -1].correct) {
 			correct++;
-			console.log($(this).text());
+			// click++;
 			$('#result').html('That was the correct answer');
+			// questionCount++;
 			clickReset();
 			resultTimeout();
+			// nextQuestion();
 			// if ($(this).text() != questionAnswer[questionCount].correct)	
 		} else {
 			incorrect++;
+			// click++;
 			$('#result').html('That answer was incorrect the correct answer is ' + questionAnswer[questionCount -1].correct);
+			// questionCount++;
 			clickReset();
 			resultTimeout();
+			// nextQuestion();
 		}
 	});
 
-	nextQuestion();
+	// if (click == 0 || time == 0) {
+		nextQuestion();	
+		// click = 0;
+		// questionCount++;
+	// }
 }
 
 function nextQuestion() {

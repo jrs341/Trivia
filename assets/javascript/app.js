@@ -87,8 +87,9 @@ function firstQuestion() {
 
 	$('button').on('click', function() {
 		console.log($(this).text());
-		if ($(this).text() == questionAnswer[questionCount].correct) {
+		if ($(this).text() == questionAnswer[questionCount -1].correct) {
 			correct++;
+			console.log($(this).text());
 			$('#result').html('That was the correct answer');
 			clickReset();
 			resultTimeout();

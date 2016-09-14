@@ -72,34 +72,8 @@ function showNextQuestion() {
 	questionTimeout = setTimeout(firstQuestion, 5000);	
 }
 
-/*function correctResultTimeout() {
-	correctTimeout = setTimeout(displayCorrect, 3000);
-}*/
-
-/*function incorrectResultTimeout() {
-	incorrectTimeout = setTimeout(displayIncorrect, 3000);
-}*/
-
-/*function displayResult() {
-	if ($(this).text() == questionAnswer[questionCount].correct) {
-		correct++;
-		$('#result').html('That was the correct answer');
-	} else {
-		incorrect++;
-		$('#result').html('That answer was incorrect');
-	}
-}*/
-
 function resultTimeout() {
 	displayTimeout = setTimeout(firstQuestion, 3000);
-}
-
-function displayCorrect() {
-	$('#result').html('That was the correct answer');
-}
-
-function displayIncorrect() {
-	$('#result').html('That answer was incorrect the correct answer is ' + questionAnswer[questionCount -1].correct);
 }
 
 function firstQuestion() {
@@ -116,33 +90,23 @@ function firstQuestion() {
 		if ($(this).text() == questionAnswer[questionCount].correct) {
 			correct++;
 			$('#result').html('That was the correct answer');
-			// resultTimeout();
-			// displayCorrect();
-			// correctResultTimeout();
-			// corretResultReset();
-			clickReset();
-			// if ($(this).text() != questionAnswer[questionCount].correct)	
-		} else  {
-			incorrect++;
-			$('#result').html('That answer was incorrect');
 			clickReset();
 			resultTimeout();
-			// displayIncorrect();
-			// incorrectResultTimeout();
-			// incorrectResultReset();
-			
+			// if ($(this).text() != questionAnswer[questionCount].correct)	
+		} else {
+			incorrect++;
+			$('#result').html('That answer was incorrect the correct answer is ' + questionAnswer[questionCount].correct);
+			clickReset();
+			resultTimeout();
 		}
 	});
-	// call a time out on next question
+
 	nextQuestion();
 }
 
 function nextQuestion() {
-	// resultTimeout();
-	// clickReset();
 	showNextQuestion();
 	questionCount++;
-	// incorrect++;
 	clearTimeout(counter);
 	time = 5;
 	countDown();
@@ -167,6 +131,7 @@ function countDown() {
 function empty() {
 	$('#question').empty();
 	$('#answers').empty();
+	$('#result').empty();
 }
 
 function reset() {
@@ -179,18 +144,7 @@ function clickReset() {
 	clearTimeout(questionTimeout);
 	clearTimeout(counter);
 	time = 5;
-	// firstQuestion();	
 }
-
-/*function incorrectResultReset() {
-	clearTimeout(incorrectTimeout);
-	$('#result').empty();
-}*/
-
-/*function correctResultReset() {
-	clearTimeout(correctTimeout);
-	$('#result').empty();
-}*/
 
 $(document).ready(function() {
 

@@ -1,3 +1,8 @@
+
+
+// GLOBAL VARIABLES
+// =============================================================================
+
 var questionAnswer = [
 
 	{
@@ -60,6 +65,7 @@ var questionAnswer = [
 		correct: '3'
 	}
 ];
+
 var time = 5;
 
 var questionCount = 0;
@@ -68,18 +74,34 @@ var correct = 0;
 
 var incorrect = 0;
 
+var unAnswered = 0;
+
 var click = 0;
 
+// FUNCTIONS
+// ===============================================================================
+
+function startCountDown() {
+	counter = setTimeout(countDown, 1000);
+}
+
+function countDown() {
+	startCountDown();
+	time --;
+	$('#timer').html(time);
+}
+
 function showNextQuestion() {
-	questionTimeout = setTimeout(firstQuestion, 5000);	
+	questionTimeout = setTimeout(displayQuestion, 5000);	
 }
 
 function resultTimeout() {
 	displayTimeout = setTimeout(firstQuestion, 3000);
 }
 
-function firstQuestion() {
-	empty();
+function displayQuestion() {
+	// empty();
+
 	$('#question').append(questionAnswer[questionCount].question);
 	for (var i = 0; i < questionAnswer[questionCount].answers.length; i++) {
 		var b = $('<button>');
@@ -97,7 +119,8 @@ function firstQuestion() {
 			resultTimeout();
 			// nextQuestion();
 			// if ($(this).text() != questionAnswer[questionCount].correct)	
-		} else {
+		} 
+		else {
 			incorrect++;
 			// click++;
 			$('#result').html('That answer was incorrect the correct answer is ' + questionAnswer[questionCount -1].correct);
@@ -108,36 +131,42 @@ function firstQuestion() {
 		}
 	});
 
-	// if (click == 0 || time == 0) {
-		nextQuestion();	
-		// click = 0;
-		// questionCount++;
-	// }
-}
-
-function nextQuestion() {
-	showNextQuestion();
-	questionCount++;
-	clearTimeout(counter);
-	time = 5;
-	countDown();
-	if (questionCount==questionAnswer.length) {
+	if (time === 0) {
+			$('#result').html('Time is up! The correct answer is ' + questionAnswer[questionCount -1].correct);
+			incorrect++;
+			clickReset();
+			resultTimeout();
+			displayQuestion();
+	}
+	else if (time === 0 && questionCount==questionAnswer.length)
+	{
 		empty();
 		$('#question').html('Correct Answers: ' + correct);
 		$('#answers').html('Incorrect Answers: ' + incorrect);
+		$('#answers').append('Unanswered:' + unAnswered);
 		reset();
 	}
+	else {
+		displayQuestion();
+	}
+
+		// nextQuestion();	
 }
 
-function startCountDown() {
-	counter = setTimeout(countDown, 1000);
-}
-
-function countDown() {
-	startCountDown();
-	time --;
-	$('#timer').html(time);
-}
+// function nextQuestion() {
+// 	showNextQuestion();
+// 	questionCount++;
+// 	clearTimeout(counter);
+// 	time = 5;
+// 	countDown();
+// 	if (questionCount==questionAnswer.length) {
+// 		empty();
+// 		$('#question').html('Correct Answers: ' + correct);
+// 		$('#answers').html('Incorrect Answers: ' + incorrect);
+// 		$('#answers').append('Unanswered:' + unAnswered);
+// 		reset();
+// 	}
+// }
 
 function empty() {
 	$('#question').empty();
@@ -159,8 +188,8 @@ function clickReset() {
 
 $(document).ready(function() {
 
-	countDown();
+	// countDown();
 
-	firstQuestion();
+	displayQuestion();
 
 });

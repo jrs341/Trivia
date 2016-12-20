@@ -1,6 +1,11 @@
 // GLOBAL VARIABLES
 // =============================================================================
 
+// https://www.opentdb.com/api.php?amount=11&category=9&difficulty=medium&type=multiple&encode=url3986
+
+$.ajax({url: "https://www.opentdb.com/api.php?amount=11&category=9&difficulty=medium&type=multiple&encode=url3986", method: 'GET'}).done(function(response) {
+	     console.log(response);
+	}); 
 var questionAnswer = [
 
 	{
@@ -134,7 +139,6 @@ function empty() {
 	$('#question').empty();
 	$('#answers').empty();
 	$('#result').empty();
-	$('#timer').empty();
 }
 
 function reset() {
@@ -145,9 +149,10 @@ function reset() {
 }
 
 function displayResults() {
-	$('#question').html('Correct Answers: ' + correct);
-	$('#answers').html('Incorrect Answers: ' + incorrect);
-	$('#answers').append('Unanswered:' + unAnswered);
+	$('#timer').empty();
+	$('#result').html('Correct Answers: ' + correct);
+	$('#question').html('Incorrect Answers: ' + incorrect);
+	$('#answers').html('Unanswered:' + unAnswered);
 	clearInterval(timer);
 }
 

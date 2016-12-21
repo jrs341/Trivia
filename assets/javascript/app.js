@@ -6,6 +6,7 @@
 $.ajax({url: "https://www.opentdb.com/api.php?amount=11&category=9&difficulty=medium&type=multiple&encode=url3986", method: 'GET'}).done(function(response) {
 	     console.log(response);
 	}); 
+
 var questionAnswer = [
 
 	{

@@ -4,71 +4,85 @@
 // https://www.opentdb.com/api.php?amount=11&category=9&difficulty=medium&type=multiple&encode=url3986
 
 $.ajax({url: "https://www.opentdb.com/api.php?amount=11&category=9&difficulty=medium&type=multiple&encode=url3986", method: 'GET'}).done(function(response) {
-	     console.log(response);
+
+	     for (var i = 0; i < results.length; i++) {
+	     	question.push(results[i].question);
+	     	incorrectAnswers.push(results[i].incorrect_answers);
+	     	correctAnswers.push(results[i].correct_answers);
+	     }
+
+	     console.log(response.results);
 	}); 
+var question = [];
 
-var questionAnswer = [
+var incorrectAnswers = [];
 
-	{
-		question: 'What is the incorrect pets name',
-		answers: ['bear', 'sicily', 'gearmo', 'hoddy'],
-		correct: 'hoddy'
-	},
+var correctAnswers = [];
 
-	{
-		question: 'which one is NaN',
-		answers: ['one', 'two', 'dog', 'three'],
-		correct: 'dog'
-	},
+var answerList = [];
 
-	{
-		question: 'q3',	
-		answers: ['1', '2', '3', '4'],
-		correct: '3'
-	},
+// var questionAnswer = [
 
-	{
-		question: 'q4',	
-		answers: ['1', '2', '3', '4'],
-		correct: '3'
-	},
+// 	{
+// 		question: 'What is the incorrect pets name',
+// 		answers: ['bear', 'sicily', 'gearmo', 'hoddy'],
+// 		correct: 'hoddy'
+// 	},
 
-	{
-		question: 'q5',	
-		answers: ['1', '2', '3', '4'],
-		correct: '3'
-	},
+// 	{
+// 		question: 'which one is NaN',
+// 		answers: ['one', 'two', 'dog', 'three'],
+// 		correct: 'dog'
+// 	},
 
-	{
-		question: 'q6',	
-		answers: ['1', '2', '3', '4'],
-		correct: '3'
-	},
+// 	{
+// 		question: 'q3',	
+// 		answers: ['1', '2', '3', '4'],
+// 		correct: '3'
+// 	},
 
-	{
-		question: 'q7',	
-		answers: ['1', '2', '3', '4'],
-		correct: '3'
-	},
+// 	{
+// 		question: 'q4',	
+// 		answers: ['1', '2', '3', '4'],
+// 		correct: '3'
+// 	},
 
-	{
-		question: 'q8',	
-		answers: ['1', '2', '3', '4'],
-		correct: '3'
-	},
+// 	{
+// 		question: 'q5',	
+// 		answers: ['1', '2', '3', '4'],
+// 		correct: '3'
+// 	},
 
-	{
-		question: 'q9',	
-		answers: ['1', '2', '3', '4'],
-		correct: '3'
-	},
+// 	{
+// 		question: 'q6',	
+// 		answers: ['1', '2', '3', '4'],
+// 		correct: '3'
+// 	},
 
-	{
-		question: 'q10',	
-		answers: ['1', '2', '3', '4'],
-		correct: '3'
-	}
-];
+// 	{
+// 		question: 'q7',	
+// 		answers: ['1', '2', '3', '4'],
+// 		correct: '3'
+// 	},
+
+// 	{
+// 		question: 'q8',	
+// 		answers: ['1', '2', '3', '4'],
+// 		correct: '3'
+// 	},
+
+// 	{
+// 		question: 'q9',	
+// 		answers: ['1', '2', '3', '4'],
+// 		correct: '3'
+// 	},
+
+// 	{
+// 		question: 'q10',	
+// 		answers: ['1', '2', '3', '4'],
+// 		correct: '3'
+// 	}
+// ];
 
 var time = 5;
 
@@ -85,6 +99,17 @@ var click = 0;
 // FUNCTIONS
 // =================================================================================================
 
+// http://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+function shuffleAnswers(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    return array;
+}
+
 function countDown() {
 	$('#timer').html(time);
 	time --;
@@ -98,12 +123,15 @@ function countDown() {
 function getQuestion() {
 	timer = setInterval(countDown, 1000);
 	$('#question').append(questionAnswer[questionCount].question);
-	for (var i = 0; i < questionAnswer[questionCount].answers.length; i++) {
+	answerList = incorrectAnswers[questionCount].push(correctAnswers[questionCount])
+	shuffleAnswers(answerList);
+	for (var i = 0; i < answerList.length; i++) {
+	// for (var i = 0; i < questionAnswer[questionCount].answers.length; i++) {
 		var b = $('<button>');
 		b.text(questionAnswer[questionCount].answers[i]);
 		b.appendTo('#answers');
 	}
-	checkAnswer();
+	// checkAnswer();
 }
 
 function nextQuestion() {
@@ -158,4 +186,6 @@ function displayResults() {
 }
 
 getQuestion();
+
+// console.log(response.results);
 

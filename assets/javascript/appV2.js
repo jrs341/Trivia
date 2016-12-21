@@ -3,7 +3,7 @@
 
 // https://www.opentdb.com/api.php?amount=11&category=9&difficulty=medium&type=multiple&encode=url3986
 
-$.ajax({url: "https://www.opentdb.com/api.php?amount=11&category=9&difficulty=medium&type=multiple&encode=url3986", method: 'GET'}).done(function(response) {
+$.ajax({url: "https://www.opentdb.com/api.php?amount=10&category=9&difficulty=medium&type=multiple", method: 'GET'}).done(function(response) {
 
 	     for (var i = 0; i < results.length; i++) {
 	     	question.push(results[i].question);

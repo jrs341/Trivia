@@ -3,16 +3,16 @@
 
 // https://www.opentdb.com/api.php?amount=11&category=9&difficulty=medium&type=multiple&encode=url3986
 
-// $.ajax({url: "https://www.opentdb.com/api.php?amount=11&category=9&difficulty=medium&type=multiple&encode=url3986", method: 'GET'}).done(function(response) {
+$.ajax({url: "https://www.opentdb.com/api.php?amount=11&category=9&difficulty=medium&type=multiple&encode=url3986", method: 'GET'}).done(function(response) {
 
-	     // for (var i = 0; i < results.length; i++) {
-	     // 	question.push(results[i].question);
-	     // 	incorrectAnswers.push(results[i].incorrect_answers);
-	     // 	correctAnswers.push(results[i].correct_answers);
-	     // }
+	     for (var i = 0; i < results.length; i++) {
+	     	question.push(results[i].question);
+	     	incorrectAnswers.push(results[i].incorrect_answers);
+	     	correctAnswers.push(results[i].correct_answers);
+	     }
 
-	     // console.log(response.results);
-	// }); 
+	     console.log(response.results);
+	}); 
 var question = [];
 
 var incorrectAnswers = [];
@@ -21,70 +21,70 @@ var correctAnswers = [];
 
 var answerList;
 
-var response = {
-	results:[
+// var response = {
+// 	results:[
 
-	{
-		question: 'What is the incorrect pets name',
-		incorrect_answers: ['bear', 'sicily', 'gearmo'],
-		correct_answers: 'hoddy'
-	},
+// 	{
+// 		question: 'What is the incorrect pets name',
+// 		incorrect_answers: ['bear', 'sicily', 'gearmo'],
+// 		correct_answers: 'hoddy'
+// 	},
 
-	{
-		question: 'which one is NaN',
-		incorrect_answers: ['one', 'two', 'three'],
-		correct_answers: 'dog'
-	},
+// 	{
+// 		question: 'which one is NaN',
+// 		incorrect_answers: ['one', 'two', 'three'],
+// 		correct_answers: 'dog'
+// 	},
 
-	{
-		question: 'q3',	
-		incorrect_answers: ['1', '2', '4'],
-		correct_answers: '3'
-	},
+// 	{
+// 		question: 'q3',	
+// 		incorrect_answers: ['1', '2', '4'],
+// 		correct_answers: '3'
+// 	},
 
-	{
-		question: 'q4',	
-		incorrect_answers: ['1', '2', '4'],
-		correct_answers: '3'
-	},
+// 	{
+// 		question: 'q4',	
+// 		incorrect_answers: ['1', '2', '4'],
+// 		correct_answers: '3'
+// 	},
 
-	{
-		question: 'q5',	
-		incorrect_answers: ['1', '2', '4'],
-		correct_answers: '3'
-	},
+// 	{
+// 		question: 'q5',	
+// 		incorrect_answers: ['1', '2', '4'],
+// 		correct_answers: '3'
+// 	},
 
-	{
-		question: 'q6',	
-		incorrect_answers: ['1', '2', '4'],
-		correct_answers: '3'
-	},
+// 	{
+// 		question: 'q6',	
+// 		incorrect_answers: ['1', '2', '4'],
+// 		correct_answers: '3'
+// 	},
 
-	{
-		question: 'q7',	
-		incorrect_answers: ['1', '2', '4'],
-		correct_answers: '3'
-	},
+// 	{
+// 		question: 'q7',	
+// 		incorrect_answers: ['1', '2', '4'],
+// 		correct_answers: '3'
+// 	},
 
-	{
-		question: 'q8',	
-		incorrect_answers: ['1', '2', '4'],
-		correct_answers: '3'
-	},
+// 	{
+// 		question: 'q8',	
+// 		incorrect_answers: ['1', '2', '4'],
+// 		correct_answers: '3'
+// 	},
 
-	{
-		question: 'q9',	
-		incorrect_answers: ['1', '2', '4'],
-		correct_answers: '3'
-	},
+// 	{
+// 		question: 'q9',	
+// 		incorrect_answers: ['1', '2', '4'],
+// 		correct_answers: '3'
+// 	},
 
-	{
-		question: 'q10',	
-		incorrect_answers: ['1', '2', '4'],
-		correct_answers: '3'
-	}
-]
-};
+// 	{
+// 		question: 'q10',	
+// 		incorrect_answers: ['1', '2', '4'],
+// 		correct_answers: '3'
+// 	}
+// ]
+// };
 
 var time = 5;
 
@@ -98,13 +98,13 @@ var unAnswered = 0;
 
 var click = 0;
 
-for (var i = 0; i < response.results.length; i++) {
-	     	question.push(response.results[i].question);
-	     	incorrectAnswers.push(response.results[i].incorrect_answers);
-	     	correctAnswers.push(response.results[i].correct_answers);
-	     }
+// for (var i = 0; i < response.results.length; i++) {
+// 	     	question.push(response.results[i].question);
+// 	     	incorrectAnswers.push(response.results[i].incorrect_answers);
+// 	     	correctAnswers.push(response.results[i].correct_answers);
+// 	     }
 
-	     console.log(response.results);
+// 	     console.log(response.results);
 
 // FUNCTIONS
 // =================================================================================================

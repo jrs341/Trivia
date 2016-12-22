@@ -15,32 +15,39 @@
 <body>
 
 <header class="page-header">
-	Totally Trivia
+	<h1 id="timer">		
+	</h1>
+
+	<img src="assets/images/trivia.png">
 </header>
 
-<div class="container-fluid">
-	<div class="jumbotron">
-		<div id="timer">
-		
-		</div>
-		<div id="result">
+	<h3 id="question">
+	</h3>
 
+	<h3 id="result">
+	</h3>
+
+	<h3 id="answers">
+		<div id="button0">
 		</div>
-		<div id="question">
-		
+		<div id="button1">
 		</div>
-		<div id="answers" class="col-m-4">
-		
+		<div id="button2">
 		</div>
+		<div id="button3">
+		</div>
+	</h3>
+	<div>
+		<button id="start" class="btn btn-default center-block" onclick="setTimeout(getQuestion, 250)"><!-- <span class="startImage"></span> -->
+		</button>
 	</div>
-</div>
 
 </body>
 
 <script src="https://code.jquery.com/jquery-2.2.3.js" integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4=" crossorigin="anonymous">
 </script>
 
-<script type="text/javascript" src="assets/javascript/appV2.js"> </script>
+<script type="text/javascript" src="assets/javascript/app.js"> </script>
 
 </script>
 </html>

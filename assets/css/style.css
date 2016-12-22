@@ -1,27 +1,37 @@
 body {
+	height: 100%;
+	background: url('../images/questionmarks.png') no-repeat center center fixed;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 
 }
 
 .page-header {
 	text-align: center;
+	border-bottom: none;
 }
 
-.jumbotron {
+#timer, #result, #question, #answers {
 	text-align: center;
-}
-
-#timer {
-
-}
-
-#result {
 	height: 30px;
 }
 
-#question {
-
+button {
+	height: 30px;
+	width: 500px;
 }
 
-#answers{
+.btn {
+	margin-bottom: 20px;
+	background-color: yellow;
+}
 
+#start {
+	background-image: url('../images/triviaButton.jpeg');
+	background-repeat: no-repeat;
+    background-position: center center;
+	height: 100px;
+	width: 100px;
 }

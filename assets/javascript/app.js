@@ -3,16 +3,6 @@
 
 // https://www.opentdb.com/api.php?amount=11&category=9&difficulty=medium&type=multiple&encode=url3986
 
-$.ajax({url: "https://www.opentdb.com/api.php?amount=11&category=9&difficulty=medium&type=multiple&encode=url3986", method: 'GET'}).done(function(response) {
-
-	     for (var i = 0; i < results.length; i++) {
-	     	question.push(results[i].question);
-	     	incorrectAnswers.push(results[i].incorrect_answers);
-	     	correctAnswers.push(results[i].correct_answers);
-	     }
-
-	     console.log(response.results);
-	}); 
 var question = [];
 
 var incorrectAnswers = [];
@@ -21,68 +11,68 @@ var correctAnswers = [];
 
 var answerList = [];
 
-// var questionAnswer = [
+var questionAnswer = [
 
-// 	{
-// 		question: 'What is the incorrect pets name',
-// 		answers: ['bear', 'sicily', 'gearmo', 'hoddy'],
-// 		correct: 'hoddy'
-// 	},
+	{
+		question: 'What is the incorrect pets name',
+		answers: ['bear', 'sicily', 'gearmo', 'hoddy'],
+		correct: 'hoddy'
+	},
 
-// 	{
-// 		question: 'which one is NaN',
-// 		answers: ['one', 'two', 'dog', 'three'],
-// 		correct: 'dog'
-// 	},
+	{
+		question: 'which one is NaN',
+		answers: ['one', 'two', 'dog', 'three'],
+		correct: 'dog'
+	},
 
-// 	{
-// 		question: 'q3',	
-// 		answers: ['1', '2', '3', '4'],
-// 		correct: '3'
-// 	},
+	{
+		question: 'q3',	
+		answers: ['1', '2', '3', '4'],
+		correct: '3'
+	},
 
-// 	{
-// 		question: 'q4',	
-// 		answers: ['1', '2', '3', '4'],
-// 		correct: '3'
-// 	},
+	{
+		question: 'q4',	
+		answers: ['1', '2', '3', '4'],
+		correct: '3'
+	},
 
-// 	{
-// 		question: 'q5',	
-// 		answers: ['1', '2', '3', '4'],
-// 		correct: '3'
-// 	},
+	{
+		question: 'q5',	
+		answers: ['1', '2', '3', '4'],
+		correct: '3'
+	},
 
-// 	{
-// 		question: 'q6',	
-// 		answers: ['1', '2', '3', '4'],
-// 		correct: '3'
-// 	},
+	{
+		question: 'q6',	
+		answers: ['1', '2', '3', '4'],
+		correct: '3'
+	},
 
-// 	{
-// 		question: 'q7',	
-// 		answers: ['1', '2', '3', '4'],
-// 		correct: '3'
-// 	},
+	{
+		question: 'q7',	
+		answers: ['1', '2', '3', '4'],
+		correct: '3'
+	},
 
-// 	{
-// 		question: 'q8',	
-// 		answers: ['1', '2', '3', '4'],
-// 		correct: '3'
-// 	},
+	{
+		question: 'q8',	
+		answers: ['1', '2', '3', '4'],
+		correct: '3'
+	},
 
-// 	{
-// 		question: 'q9',	
-// 		answers: ['1', '2', '3', '4'],
-// 		correct: '3'
-// 	},
+	{
+		question: 'q9',	
+		answers: ['1', '2', '3', '4'],
+		correct: '3'
+	},
 
-// 	{
-// 		question: 'q10',	
-// 		answers: ['1', '2', '3', '4'],
-// 		correct: '3'
-// 	}
-// ];
+	{
+		question: 'q10',	
+		answers: ['1', '2', '3', '4'],
+		correct: '3'
+	}
+];
 
 var time = 5;
 
@@ -111,7 +101,7 @@ function shuffleAnswers(array) {
 }
 
 function countDown() {
-	$('#timer').html(time);
+	$('#timer').html('Timer: ' + time);
 	time --;
 	if (time < 0) {
 		unAnswered++;
@@ -121,22 +111,21 @@ function countDown() {
 }
 
 function getQuestion() {
+	time = 5;
+	$('#start').css('display', 'none');
 	timer = setInterval(countDown, 1000);
 	$('#question').append(questionAnswer[questionCount].question);
-	answerList = incorrectAnswers[questionCount].push(correctAnswers[questionCount])
-	shuffleAnswers(answerList);
-	for (var i = 0; i < answerList.length; i++) {
-	// for (var i = 0; i < questionAnswer[questionCount].answers.length; i++) {
-		var b = $('<button>');
+	for (var i = 0; i < questionAnswer[questionCount].answers.length; i++) {
+		var b = $('<button class="btn pill">');
 		b.text(questionAnswer[questionCount].answers[i]);
-		b.appendTo('#answers');
+		b.appendTo('#button'+i);
 	}
-	// checkAnswer();
+	checkAnswer();
 }
 
 function nextQuestion() {
 	time = 5;
-	$('#timer').html(time);
+	$('#timer').html('Timer: ' + time);
 	getQuestion();
 }
 
@@ -165,8 +154,10 @@ function checkAnswer() {
 }
 
 function empty() {
+	for (var i = 0; i < 4; i++) {
+		$('#button'+i).empty();
+	}
 	$('#question').empty();
-	$('#answers').empty();
 	$('#result').empty();
 }
 
@@ -178,6 +169,7 @@ function reset() {
 }
 
 function displayResults() {
+	$('#start').removeAttr('style');
 	$('#timer').empty();
 	$('#result').html('Correct Answers: ' + correct);
 	$('#question').html('Incorrect Answers: ' + incorrect);
@@ -185,7 +177,6 @@ function displayResults() {
 	clearInterval(timer);
 }
 
-getQuestion();
+// getQuestion();
 
-// console.log(response.results);
 

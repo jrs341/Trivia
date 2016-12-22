@@ -13,9 +13,22 @@ body {
 	border-bottom: none;
 }
 
+#headerImage {
+	background: url('../images/trivia.png') no-repeat center center fixed;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
 #timer, #result, #question, #answers {
 	text-align: center;
-	height: 30px;
+	height: 40px;
+}
+
+#timer {
+	background-color: #78C53D;
+	border-radius: 7px;
 }
 
 button {
@@ -25,13 +38,17 @@ button {
 
 .btn {
 	margin-bottom: 20px;
-	background-color: yellow;
+	background-color: #D5DD27;
 }
 
-#start {
+#start, #reset {
 	background-image: url('../images/triviaButton.jpeg');
 	background-repeat: no-repeat;
     background-position: center center;
 	height: 100px;
 	width: 100px;
+}
+
+.displayNone {
+	display: none;
 }

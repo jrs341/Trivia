@@ -3,13 +3,13 @@
 
 // https://www.opentdb.com/api.php?amount=11&category=9&difficulty=medium&type=multiple&encode=url3986
 
-var question = [];
+// var question = [];
 
-var incorrectAnswers = [];
+// var incorrectAnswers = [];
 
-var correctAnswers = [];
+// var correctAnswers = [];
 
-var answerList = [];
+// var answerList = [];
 
 var questionAnswer = [
 
@@ -111,8 +111,10 @@ function countDown() {
 }
 
 function getQuestion() {
-	time = 5;
+	$('#timer').html('Timer: ' + time);
 	$('#start').css('display', 'none');
+	$('#startText').css('display', 'none');
+	$('#timer').removeClass('displayNone');
 	timer = setInterval(countDown, 1000);
 	$('#question').append(questionAnswer[questionCount].question);
 	for (var i = 0; i < questionAnswer[questionCount].answers.length; i++) {
@@ -169,12 +171,23 @@ function reset() {
 }
 
 function displayResults() {
-	$('#start').removeAttr('style');
-	$('#timer').empty();
+	$('#timer').addClass('displayNone');
+	// $('#reset').removeClass('displayNone');
+	// $('#resetText').removeClass('displayNone');
 	$('#result').html('Correct Answers: ' + correct);
 	$('#question').html('Incorrect Answers: ' + incorrect);
 	$('#answers').html('Unanswered:' + unAnswered);
 	clearInterval(timer);
+}
+
+function resetGame() {
+	// location.reload;
+	time = 5;
+	questionCount = 0;
+	correct = 0;
+	incorrect = 0;
+	unAnswered = 0;
+	setTimeout(getQuestion, 500);
 }
 
 // getQuestion();

@@ -1,16 +1,6 @@
 // GLOBAL VARIABLES
 // =============================================================================
 
-// https://www.opentdb.com/api.php?amount=11&category=9&difficulty=medium&type=multiple&encode=url3986
-
-// var question = [];
-
-// var incorrectAnswers = [];
-
-// var correctAnswers = [];
-
-// var answerList = [];
-
 var questionAnswer = [
 
 	{
@@ -189,7 +179,3 @@ function resetGame() {
 	unAnswered = 0;
 	setTimeout(getQuestion, 500);
 }
-
-// getQuestion();
-
-

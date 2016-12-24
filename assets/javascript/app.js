@@ -4,67 +4,73 @@
 var questionAnswer = [
 
 	{
-		question: 'What is the incorrect pets name',
-		answers: ['bear', 'sicily', 'gearmo', 'hoddy'],
-		correct: 'hoddy'
+		question: 'Which company was established on April 1st, 1976 by Steve Jobs, Steve Wozniak and Ronald Wayne?',
+		answers: ['Apple', 'Atari', 'Microsoft', 'Comodore'],
+		correct: 'Apple'
 	},
 
 	{
-		question: 'which one is NaN',
-		answers: ['one', 'two', 'dog', 'three'],
-		correct: 'dog'
+		question: 'What does CPU stand for?',
+		answers: ['Central Processing Unit', 'Computer Personal Unit', 'Central Process Unit', 'Central Processor Unit'],
+		correct: 'Central Processing Unit'
 	},
 
 	{
-		question: 'q3',	
-		answers: ['1', '2', '3', '4'],
+		question: 'What does the \"MP\"stand for in MP3?',	
+		answers: ['Multi Pass', 'Micro Point', 'Moving Picture', 'Music Player'],
+		correct: 'Moving Picture'
+	},
+
+	{
+		question: 'How many bytes are in a kilobyte of RAM?',	
+		answers: ['1024', '512', '500', '1000'],
+		correct: '1024'
+	},
+
+	{
+		question: 'The programming language Swift was created to replace what other programming language?',	
+		answers: ['C++', 'Objective_C', 'C#', 'Ruby'],
+		correct: 'Objective_C'
+	},
+
+	{
+		question: 'What amount of bits commonly equals one byte?',	
+		answers: ['2', '1', '8', '64'],
+		correct: '8'
+	},
+
+	{
+		question: 'In the programming language Java, which of these keywords would you put on a variable to make sure it doesn\'t get modified?',	
+		answers: ['Final', 'Static', 'Public', 'Private'],
+		correct: 'Final'
+	},
+
+	{
+		question: 'What is the most preferred image format used for logos in the Wikimedia database?',	
+		answers: ['jpeg', 'svg', 'gif', 'png'],
+		correct: 'svg'
+	},
+
+	{
+		question: 'In web design, what does CSS stand for?',	
+		answers: ['Cascading Style Sheet', 'Corrective Style Sheet', 'Counter Strike Source', 'Computer Style Sheet'],
 		correct: '3'
 	},
 
 	{
-		question: 'q4',	
-		answers: ['1', '2', '3', '4'],
-		correct: '3'
+		question: 'What is the domain name for the country Tuvalu?',	
+		answers: ['.tu', '.tv', '.tt', '.tl'],
+		correct: '.tv'
 	},
 
 	{
-		question: 'q5',	
-		answers: ['1', '2', '3', '4'],
-		correct: '3'
-	},
-
-	{
-		question: 'q6',	
-		answers: ['1', '2', '3', '4'],
-		correct: '3'
-	},
-
-	{
-		question: 'q7',	
-		answers: ['1', '2', '3', '4'],
-		correct: '3'
-	},
-
-	{
-		question: 'q8',	
-		answers: ['1', '2', '3', '4'],
-		correct: '3'
-	},
-
-	{
-		question: 'q9',	
-		answers: ['1', '2', '3', '4'],
-		correct: '3'
-	},
-
-	{
-		question: 'q10',	
-		answers: ['1', '2', '3', '4'],
-		correct: '3'
+		question: 'How many kilobytes in one gigabyte?',	
+		answers: ['1000000', '1024', '1000', '1048576'],
+		correct: '.tv'
 	}
 ];
 
-var time = 5;
+var time = 10;
 
 var questionCount = 0;
 
@@ -87,7 +93,6 @@ function shuffleAnswers(array) {
         array[i] = array[j];
         array[j] = temp;
     }
-    return array;
 }
 
 function countDown() {
@@ -106,6 +111,9 @@ function getQuestion() {
 	$('#startText').css('display', 'none');
 	$('#timer').removeClass('displayNone');
 	timer = setInterval(countDown, 1000);
+	console.log(questionAnswer[questionCount].answers);
+	shuffleAnswers(questionAnswer[questionCount].answers);
+	console.log(questionAnswer[questionCount].answers);
 	$('#question').append(questionAnswer[questionCount].question);
 	for (var i = 0; i < questionAnswer[questionCount].answers.length; i++) {
 		var b = $('<button class="btn pill">');
@@ -116,7 +124,7 @@ function getQuestion() {
 }
 
 function nextQuestion() {
-	time = 5;
+	time = 10;
 	$('#timer').html('Timer: ' + time);
 	getQuestion();
 }
@@ -156,8 +164,8 @@ function empty() {
 function reset() {
 	questionCount++;
 	clearInterval(timer);
-	setTimeout(empty, 1000);
-	setTimeout(nextQuestion, 1000);
+	setTimeout(empty, 3000);
+	setTimeout(nextQuestion, 3000);
 }
 
 function displayResults() {
